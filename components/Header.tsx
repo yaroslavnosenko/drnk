@@ -1,48 +1,38 @@
-import {
-  Button,
-  HStack,
-  Heading,
-  VStack,
-  ButtonIcon,
-  SettingsIcon,
-  Box,
-} from '@gluestack-ui/themed'
 import { BlurView } from 'expo-blur'
 import { router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import styled from 'styled-components/native'
+import { User } from 'lucide-react-native'
+
+const Container = styled.View({
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: 8,
+})
+
+const Name = styled.Text({ fontSize: 22, fontWeight: 'bold', paddingLeft: 12 })
+const IconButton = styled.TouchableOpacity({ padding: 12 })
 
 export const Header = () => {
   return (
     <SafeAreaView edges={{ bottom: 'off', top: 'additive' }}>
-      <Box px="$3">
-        <BlurView
-          style={{
-            backgroundColor: '#ffffffbb',
-            overflow: 'hidden',
-            borderRadius: 20,
-          }}
-        >
-          <VStack>
-            <HStack p="$4" justifyContent="space-between">
-              <Heading color="black" size="lg">
-                Drnk.
-              </Heading>
-              <Button
-                size="md"
-                variant="link"
-                action="secondary"
-                isDisabled={false}
-                isFocusVisible={false}
-                h="$8"
-                w="$8"
-                onPress={() => router.push('/auth')}
-              >
-                <ButtonIcon size="xl" as={SettingsIcon} />
-              </Button>
-            </HStack>
-          </VStack>
-        </BlurView>
-      </Box>
+      <BlurView
+        style={{
+          backgroundColor: '#ffffffbb',
+          overflow: 'hidden',
+          borderRadius: 16,
+          marginHorizontal: 16,
+          marginTop: 4,
+        }}
+      >
+        <Container>
+          <Name>Drnk</Name>
+          <IconButton onPress={() => router.push('/auth')}>
+            <User color="black" size={24} strokeWidth={2.5} />
+          </IconButton>
+        </Container>
+      </BlurView>
     </SafeAreaView>
   )
 }

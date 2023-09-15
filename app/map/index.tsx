@@ -1,23 +1,24 @@
-import { VStack } from '@gluestack-ui/themed'
-import { Footer, Header, Map, TimeFilter } from '../../components'
-import { placesMock } from '../../mocks'
+import { Footer, Header, Map } from '@/components'
+import { placesMock } from '@/mocks'
+import styled from 'styled-components/native'
+import { View } from 'react-native'
+
+const Container = styled.View({
+  flex: 1,
+  background: 'red',
+  justifyContent: 'space-between',
+})
 
 export default function MapScreen() {
   return (
-    <VStack
-      width="100%"
-      height="100%"
-      bg="white"
-      justifyContent="space-between"
-    >
+    <Container>
       <Map places={placesMock} />
-      <VStack>
+      <View>
         <Header />
-        <TimeFilter />
-      </VStack>
-      <VStack>
+      </View>
+      <View>
         <Footer />
-      </VStack>
-    </VStack>
+      </View>
+    </Container>
   )
 }

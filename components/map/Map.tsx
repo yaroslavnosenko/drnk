@@ -1,6 +1,6 @@
-import { Box, Text } from '@gluestack-ui/themed'
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
-import { Place } from '../types'
+import MapView from 'react-native-maps'
+import { Place } from '@/types'
+import { Pin } from './Pin'
 
 const ManhattanRegion = {
   latitude: 40.754932,
@@ -28,13 +28,12 @@ export const Map = ({ places }: MapProps) => {
       }}
     >
       {places.map(({ id, latitude, longitude, hhFinish }) => (
-        <Marker key={id} coordinate={{ latitude, longitude }}>
-          <Box bg="black" p="$1" px="$2" borderRadius="$full">
-            <Text color="white" fontWeight="$medium" size="2xs">
-              {hhFinish}
-            </Text>
-          </Box>
-        </Marker>
+        <Pin
+          key={id}
+          latitude={latitude}
+          longitude={longitude}
+          text={hhFinish}
+        />
       ))}
     </MapView>
   )
