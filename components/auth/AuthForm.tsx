@@ -46,10 +46,7 @@ export const AuthForm = ({ onSignInWithGoogle, onSubmit }: AuthFormProps) => {
           />
         )}
         rules={{
-          required: {
-            value: true,
-            message: 'Field is required!',
-          },
+          required: true,
           pattern: {
             value: EMAIL_REGEX,
             message: 'Invalid email address.',
@@ -60,7 +57,7 @@ export const AuthForm = ({ onSignInWithGoogle, onSubmit }: AuthFormProps) => {
         disabled={isSubmitSuccessful}
         onPress={handleSubmit(onSubmit)}
         style={{ marginTop: 16 }}
-        disabledText={'Loading...'}
+        disabledText={'...'}
       >
         Continue with email
       </Button>

@@ -2,7 +2,9 @@ import { Color } from '@/ui'
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
-import { AuthForm } from '@/components'
+import { AuthForm, AuthFormInput, PinForm } from '@/components'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/hooks'
 
 const Heading = styled.Text({
   fontSize: 32,
@@ -28,6 +30,29 @@ const Hint = styled.Text({
 })
 
 export default function Auth() {
+  const [email, setEmail] = useState<string>('')
+  const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
+  const { signWithOtp } = useAuth()
+
+  useEffect(() => {
+    if (email && !isOtpSent) {
+      signWithOtp(email).then(() => {
+        setIsOtpSent(true)
+      })
+    }
+  }, [email, isOtpSent])
+
+  const handleVerifyOtp = (token: string) => {}
+
+  const handleBack = () => {
+    setEmail('')
+    setIsOtpSent(false)
+  }
+
+  const handleResend = () => {
+    // TODO
+  }
+
   return (
     <View
       style={{
@@ -41,11 +66,27 @@ export default function Auth() {
         <Heading>
           Welcome to <Logo>Drnk</Logo>
         </Heading>
-        <Hint>Please sign in or sign up below</Hint>
-        <AuthForm
-          onSubmit={console.log}
-          onSignInWithGoogle={() => console.log('GOOGLE')}
-        />
+        {!isOtpSent && (
+          <>
+            <Hint>Please sign in or sign up below</Hint>
+            <AuthForm
+              onSubmit={({ email }: AuthFormInput) => {
+                setEmail(email)
+              }}
+              onSignInWithGoogle={() => console.log('GOOGLE')}
+            />
+          </>
+        )}
+        {isOtpSent && (
+          <>
+            <Hint>Please enter the 6 digit code we sent to {email}</Hint>
+            <PinForm
+              onPinSubmit={handleVerifyOtp}
+              onBack={handleBack}
+              onResend={handleResend}
+            />
+          </>
+        )}
       </SafeAreaView>
     </View>
   )
