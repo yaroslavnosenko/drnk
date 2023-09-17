@@ -48,6 +48,8 @@ export default function Auth() {
           keyboardType="email-address"
           placeholder="you@email.com"
           label="Email"
+          autoFocus
+          selectionColor={Color.ORG}
           icon={<Mail color={Color.GRY} strokeWidth={2.5} />}
         />
         <Button style={{ marginTop: 16 }}>Continue with email</Button>

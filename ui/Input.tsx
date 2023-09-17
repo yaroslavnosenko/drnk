@@ -1,7 +1,6 @@
 import { TextInputProps, TextInput, View } from 'react-native'
 import styled from 'styled-components/native'
-import { Color } from './config'
-import { Mail } from 'lucide-react-native'
+import { Color } from '@/ui'
 
 interface InputProps extends TextInputProps {
   label?: string
@@ -22,6 +21,7 @@ const StyledInput = styled.TextInput({
   fontSize: 16,
   flex: 1,
   fontFamily: 'Outfit_500Medium',
+  color: Color.GRY,
 })
 
 const Label = styled.Text({
@@ -39,7 +39,7 @@ export const Input = ({ label, icon, ...props }: InputProps) => {
       {label && <Label>{label}</Label>}
       <InputContainer style={{ paddingLeft: icon ? 16 : 0 }}>
         {icon}
-        <StyledInput selectionColor={Color.ORG} {...props} />
+        <StyledInput {...props} />
       </InputContainer>
     </View>
   )

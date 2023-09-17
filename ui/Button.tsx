@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { Color } from './config'
+import { Color } from '@/ui'
 import React, { PropsWithChildren } from 'react'
 import { TouchableOpacityProps } from 'react-native'
 
