@@ -1,4 +1,4 @@
-import { Color } from '@/ui'
+import { Color } from '@/ui/config'
 import Svg, { Path } from 'react-native-svg'
 
 export const Google = () => {

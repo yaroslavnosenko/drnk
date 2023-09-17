@@ -1,11 +1,12 @@
 import styled from 'styled-components/native'
-import { Color } from '@/ui'
+import { Color } from '@/ui/config'
 import React, { PropsWithChildren } from 'react'
 import { TouchableOpacityProps } from 'react-native'
 
 interface ButtonProps extends TouchableOpacityProps {
   bg?: string
   color?: string
+  disabledText?: string
   icon?: React.ReactNode
 }
 
@@ -31,16 +32,20 @@ export const Button = ({
   color,
   icon,
   children,
+  disabledText,
   style,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
+  const { disabled } = props
   return (
     <ButtonContainer
       style={{ backgroundColor: bg || Color.GRY, ...(style as object) }}
       {...props}
     >
       {icon}
-      <ButtonText style={{ color: color || Color.WYT }}>{children}</ButtonText>
+      <ButtonText style={{ color: color || Color.WYT }}>
+        {disabled && disabledText ? disabledText : children}
+      </ButtonText>
     </ButtonContainer>
   )
 }

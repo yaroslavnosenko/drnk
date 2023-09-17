@@ -1,9 +1,10 @@
-import { TextInputProps, TextInput, View } from 'react-native'
+import { TextInputProps, View } from 'react-native'
 import styled from 'styled-components/native'
-import { Color } from '@/ui'
+import { Color } from '@/ui/config'
 
 interface InputProps extends TextInputProps {
   label?: string
+  error?: string
   icon?: React.ReactNode
 }
 
@@ -33,7 +34,15 @@ const Label = styled.Text({
   marginBottom: 8,
 })
 
-export const Input = ({ label, icon, ...props }: InputProps) => {
+const ErrorText = styled.Text({
+  fontSize: 14,
+  fontFamily: 'Outfit_400Regular',
+  color: Color.ORG,
+  marginTop: 8,
+  marginLeft: 16,
+})
+
+export const Input = ({ label, icon, error, ...props }: InputProps) => {
   return (
     <View>
       {label && <Label>{label}</Label>}
@@ -41,6 +50,7 @@ export const Input = ({ label, icon, ...props }: InputProps) => {
         {icon}
         <StyledInput {...props} />
       </InputContainer>
+      {error && <ErrorText>{error}</ErrorText>}
     </View>
   )
 }
