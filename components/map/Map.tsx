@@ -1,6 +1,7 @@
 import MapView from 'react-native-maps'
 import { Place } from '@/types'
 import { Pin } from './Pin'
+import { useRef, useState } from 'react'
 
 const ManhattanRegion = {
   latitude: 40.754932,
@@ -14,6 +15,12 @@ interface MapProps {
 }
 
 export const Map = ({ places }: MapProps) => {
+  const [activePlace, setActivePlace] = useState<Place | null>(null)
+
+  const onPinPress = (place: Place) => {
+    setActivePlace(place)
+  }
+
   return (
     <MapView
       initialRegion={ManhattanRegion}
@@ -27,14 +34,19 @@ export const Map = ({ places }: MapProps) => {
         height: '110%',
       }}
     >
-      {places.map(({ id, latitude, longitude, hhFinish }) => (
-        <Pin
-          key={id}
-          latitude={latitude}
-          longitude={longitude}
-          text={hhFinish}
-        />
-      ))}
+      {places.map((place) => {
+        const { id, latitude, longitude, hhFinish } = place
+        return (
+          <Pin
+            key={id}
+            latitude={latitude}
+            longitude={longitude}
+            text={hhFinish}
+            onPress={() => onPinPress(place)}
+            active={id === activePlace?.id}
+          />
+        )
+      })}
     </MapView>
   )
 }
