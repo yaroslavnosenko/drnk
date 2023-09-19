@@ -6,7 +6,7 @@ import {
   Outfit_700Bold,
 } from '@expo-google-fonts/outfit'
 
-export default function Layout() {
+export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     Outfit_400Regular,
     Outfit_500Medium,

@@ -1,4 +1,5 @@
 export * from './auth'
 export * from './map'
 export * from './Header'
+export * from './TabBar'
 export * from './Footer'
