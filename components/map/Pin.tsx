@@ -1,10 +1,14 @@
+import { Color } from '@/ui'
 import { Marker } from 'react-native-maps'
 import styled from 'styled-components/native'
 
 const Card = styled.View({
   color: 'white',
-  padding: 8,
-  borderRadius: 8,
+  borderRadius: 10000,
+  height: 48,
+  width: 48,
+  alignItems: 'center',
+  justifyContent: 'center',
 })
 
 const Text = styled.Text({
@@ -34,7 +38,7 @@ export const Pin = ({
       onPress={onPress}
       zIndex={active ? 10000 : undefined}
     >
-      <Card style={{ backgroundColor: active ? 'red' : 'black' }}>
+      <Card style={{ backgroundColor: active ? Color.ORG : Color.GRY }}>
         <Text>{text}</Text>
       </Card>
     </Marker>
