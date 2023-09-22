@@ -1,5 +1,3 @@
-import { Database } from '@/types/supabase'
-
 export interface Place {
   id: string
   longitude: number
@@ -7,4 +5,14 @@ export interface Place {
   hhFinish: string
 }
 
-export type Merchant = Database['public']['Tables']['merchants']['Row']
+export interface Merchant {
+  id: string
+  name: string
+  image: string
+  region: string
+  distance: number
+  type: string
+  start_time: string
+  end_time: string
+  rating: number
+}

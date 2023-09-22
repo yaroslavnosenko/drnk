@@ -1,6 +1,6 @@
 import { Color } from '@/ui'
 import { BlurView } from 'expo-blur'
-import { User2, Map, Compass } from 'lucide-react-native'
+import { User2, Heart, Compass } from 'lucide-react-native'
 import { ReactNode } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
@@ -58,16 +58,16 @@ export const TabBar = () => {
       <SafeAreaView edges={{ bottom: 'additive', top: 'off' }}>
         <Container>
           <TabButton
+            tab={'favorites'}
+            label={'Favorites'}
+            active={path.includes('favorites')}
+            icon={<Heart color={Color.GRY} strokeWidth={2.5} />}
+          />
+          <TabButton
             tab={'home'}
             label={'Home'}
             active={path.includes('home')}
             icon={<Compass color={Color.GRY} strokeWidth={2.5} />}
-          />
-          <TabButton
-            tab={'map'}
-            label={'Map'}
-            active={path.includes('map')}
-            icon={<Map color={Color.GRY} strokeWidth={2.5} />}
           />
           <TabButton
             tab={'account'}

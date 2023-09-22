@@ -1,21 +1,41 @@
+import { placesMock } from '@/mocks'
 import { Color } from '@/ui'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, View } from 'react-native'
+import { Map, MerchantList, Toolbar } from '@/components'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { merchantMock } from '@/mocks'
 
 export default function HomeTab() {
+  const { top, bottom } = useSafeAreaInsets()
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: Color.WYT, paddingTop: 250 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <Text style={{ fontSize: 72 }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Text>
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      <View style={{ position: 'absolute', width: '100%', height: '100%' }}>
+        <Map places={placesMock} />
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          width: '100%',
+          zIndex: 999,
+        }}
+      >
+        <Toolbar />
+      </View>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+        <View style={{ height: 196 + top }}></View>
+        <View
+          style={{
+            backgroundColor: Color.WYT,
+            borderTopRightRadius: 24,
+            borderTopLeftRadius: 24,
+            paddingTop: 32,
+            paddingBottom: bottom + 56 + 32,
+          }}
+        >
+          <MerchantList merhcants={merchantMock} />
+        </View>
+      </ScrollView>
+    </View>
   )
 }

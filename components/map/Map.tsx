@@ -4,7 +4,7 @@ import { Pin } from './Pin'
 import { useRef, useState } from 'react'
 
 const ManhattanRegion = {
-  latitude: 40.754932,
+  latitude: 40.754932 - 0.01,
   longitude: -73.984016,
   latitudeDelta: 0.03,
   longitudeDelta: 0.03,
@@ -31,7 +31,7 @@ export const Map = ({ places }: MapProps) => {
       style={{
         position: 'absolute',
         width: '100%',
-        height: '110%',
+        height: '100%',
       }}
     >
       {places.map((place) => {

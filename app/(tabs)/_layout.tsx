@@ -1,10 +1,8 @@
-import { Toolbar, TabBar } from '@/components'
-import { Tabs, usePathname } from 'expo-router'
+import { TabBar } from '@/components'
+import { Tabs } from 'expo-router'
 import { View } from 'react-native'
 
 export default function TabsLayout() {
-  const path = usePathname()
-  const isToolbarHidden = path.includes('account')
   return (
     <View style={{ flex: 1 }}>
       <Tabs
@@ -15,20 +13,10 @@ export default function TabsLayout() {
           },
         }}
       >
-        <Tabs.Screen name="home" options={{ title: 'Home' }} />
-        <Tabs.Screen name="map" options={{ title: 'Map' }} />
-        <Tabs.Screen name="account" options={{ title: 'Account' }} />
+        <Tabs.Screen name="home" />
+        <Tabs.Screen name="favorites" />
+        <Tabs.Screen name="account" />
       </Tabs>
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '100%',
-          display: isToolbarHidden ? 'none' : 'flex',
-        }}
-      >
-        <Toolbar />
-      </View>
       <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
         <TabBar />
       </View>

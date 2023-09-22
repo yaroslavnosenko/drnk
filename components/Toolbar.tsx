@@ -1,9 +1,9 @@
 import { BlurView } from 'expo-blur'
 import { router } from 'expo-router'
+import { Color } from '@/ui'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 import { SlidersHorizontal, Clock } from 'lucide-react-native'
-import { Color } from '@/ui'
 import { ViewStyle, StyleProp, View } from 'react-native'
 
 const Container = styled.View({
