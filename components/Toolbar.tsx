@@ -16,28 +16,25 @@ const Container = styled.View({
 const Bar = styled.View({
   flexDirection: 'row',
   justifyContent: 'space-between',
+  alignItems: 'center',
 })
 
 const SearchInput = styled.TextInput({
   fontFamily: 'Outfit_500Medium',
   fontSize: 16,
   height: 48,
-  paddingLeft: 4,
-  paddingRight: 4,
   flex: 1,
   color: Color.BLK,
 })
 
 const IconButton = styled.TouchableOpacity({
-  padding: 12,
+  padding: 16,
 })
 
 const BlurStyle: StyleProp<ViewStyle> = {
   backgroundColor: Color.WYT + 'CC',
-  borderColor: Color.GRY + '1A',
   overflow: 'hidden',
-  borderRadius: 16,
-  borderWidth: 1,
+  borderRadius: 20000,
 }
 
 export const Toolbar = () => {
@@ -47,7 +44,7 @@ export const Toolbar = () => {
     <SafeAreaView edges={{ bottom: 'off', top: 'additive' }}>
       <Container>
         <BlurView style={{ ...BlurStyle }}>
-          <Bar style={{ height: 48 }}>
+          <Bar style={{ height: 56 }}>
             <IconButton onPress={() => searchRef.current?.focus()}>
               <Search color={Color.GRY} size={24} strokeWidth={2.5} />
             </IconButton>

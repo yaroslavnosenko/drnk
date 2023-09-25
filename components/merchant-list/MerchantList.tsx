@@ -2,14 +2,15 @@ import { Merchant } from '@/types'
 import { Color } from '@/ui'
 import { Star, MapPin, Clock } from 'lucide-react-native'
 import React from 'react'
-import { View } from 'react-native'
+import { TouchableOpacityProps, View } from 'react-native'
 import styled from 'styled-components/native'
 
 interface MerchantListProps {
   merhcants: Merchant[] | null
+  onPress: (id: string) => void
 }
 
-interface ItemProps {
+interface ItemProps extends TouchableOpacityProps {
   merhcant: Merchant
 }
 
@@ -20,9 +21,9 @@ const ItemContainer = styled.TouchableOpacity({
 })
 
 const Image = styled.Image({
-  height: 130,
-  width: 172,
-  borderRadius: 16,
+  height: 120,
+  width: 160,
+  borderRadius: 12,
 })
 
 const Title = styled.Text({
@@ -38,10 +39,11 @@ const Type = styled.Text({
   opacity: 0.6,
 })
 
-const Item = ({ merhcant }: ItemProps) => {
-  const { image, name, type, rating, distance, start_time, end_time } = merhcant
+const Item = ({ merhcant, ...props }: ItemProps) => {
+  const { image, name, type, rating, distance, start_time, end_time, id } =
+    merhcant
   return (
-    <ItemContainer>
+    <ItemContainer {...props}>
       <Image
         height={130}
         width={172}
@@ -81,17 +83,17 @@ const Item = ({ merhcant }: ItemProps) => {
   )
 }
 
-export const MerchantList = ({ merhcants }: MerchantListProps) => {
+export const MerchantList = ({ merhcants, onPress }: MerchantListProps) => {
   return (
     <>
       {merhcants &&
         merhcants.map((merhcant) => (
           <React.Fragment key={merhcant.id}>
-            <Item merhcant={merhcant} />
+            <Item merhcant={merhcant} onPress={() => onPress(merhcant.id)} />
             <View
               style={{
                 height: 0.5,
-                backgroundColor: Color.GRY + '33',
+                backgroundColor: Color.GRY + '1A',
               }}
             />
           </React.Fragment>

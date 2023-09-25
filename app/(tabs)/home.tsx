@@ -3,6 +3,7 @@ import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
 import { Color, TabBarHeight } from '@/ui'
 import { BlurView } from 'expo-blur'
+import { router } from 'expo-router'
 import { Animated, ScrollView, View, Dimensions } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -25,8 +26,8 @@ export default function HomeTab() {
           style={{
             backgroundColor: Color.WYT + 'CC',
             overflow: 'hidden',
-            borderTopRightRadius: 16,
-            borderTopLeftRadius: 16,
+            borderTopRightRadius: 24,
+            borderTopLeftRadius: 24,
           }}
         >
           <ScrollView
@@ -36,11 +37,14 @@ export default function HomeTab() {
             contentContainerStyle={{
               paddingTop: 32,
               paddingBottom: TabBarHeight + bottom + 48,
-              marginHorizontal: 16,
+              marginHorizontal: 24,
               gap: 24,
             }}
           >
-            <MerchantList merhcants={merchantMock} />
+            <MerchantList
+              onPress={(id) => router.push('/place/' + id)}
+              merhcants={merchantMock}
+            />
           </ScrollView>
         </BlurView>
       </Animated.View>

@@ -51,7 +51,7 @@ export const TabBar = () => {
       style={{
         backgroundColor: Color.WYT + 'CC',
         overflow: 'hidden',
-        borderTopWidth: 1,
+        borderTopWidth: 0.5,
         borderTopColor: Color.GRY + '1A',
       }}
     >
