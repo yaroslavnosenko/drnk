@@ -39,11 +39,10 @@ export const useLayerLayout = ({
   const moveToPosition = useCallback(
     (toValue: number) => {
       stickPosition.current = toValue
-      Animated.spring(animation.current, {
-        restSpeedThreshold: 0.1,
-        restDisplacementThreshold: 0.1,
+      Animated.timing(animation.current, {
         useNativeDriver: false,
         toValue,
+        duration: 300,
       }).start(() => setLayerPosition(toValue))
     },
     [animation]

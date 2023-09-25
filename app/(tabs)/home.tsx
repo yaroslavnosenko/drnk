@@ -37,9 +37,6 @@ export default function HomeTab() {
       paddingTop: 24,
       paddingBottom: TabBarHeight + bottom + 24 + 64,
       paddingHorizontal: 16,
-      backgroundColor: Color.WYT,
-      borderTopRightRadius: 24,
-      borderTopLeftRadius: 24,
     }),
     [bottom]
   )
@@ -71,6 +68,11 @@ export default function HomeTab() {
           onScroll={onScroll}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
+          style={{
+            backgroundColor: Color.WYT,
+            borderTopRightRadius: 24,
+            borderTopLeftRadius: 24,
+          }}
           contentContainerStyle={FlatListStyle}
           scrollEnabled={layerPosition === positions.top}
           ListHeaderComponent={
