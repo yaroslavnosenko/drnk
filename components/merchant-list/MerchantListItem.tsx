@@ -5,11 +5,6 @@ import React from 'react'
 import { TouchableOpacityProps, View } from 'react-native'
 import styled from 'styled-components/native'
 
-interface MerchantListProps {
-  merhcants: Merchant[] | null
-  onPress: (id: string) => void
-}
-
 interface ItemProps extends TouchableOpacityProps {
   merhcant: Merchant
 }
@@ -39,7 +34,7 @@ const Type = styled.Text({
   opacity: 0.6,
 })
 
-const Item = ({ merhcant, ...props }: ItemProps) => {
+export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
   const { image, name, type, rating, distance, start_time, end_time, id } =
     merhcant
   return (
@@ -80,24 +75,5 @@ const Item = ({ merhcant, ...props }: ItemProps) => {
         </View>
       </View>
     </ItemContainer>
-  )
-}
-
-export const MerchantList = ({ merhcants, onPress }: MerchantListProps) => {
-  return (
-    <>
-      {merhcants &&
-        merhcants.map((merhcant) => (
-          <React.Fragment key={merhcant.id}>
-            <Item merhcant={merhcant} onPress={() => onPress(merhcant.id)} />
-            <View
-              style={{
-                height: 0.5,
-                backgroundColor: Color.GRY + '1A',
-              }}
-            />
-          </React.Fragment>
-        ))}
-    </>
   )
 }

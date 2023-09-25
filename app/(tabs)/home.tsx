@@ -1,21 +1,20 @@
-import { Map, MerchantList, Toolbar } from '@/components'
+import { Map, MerchantListItem, Toolbar } from '@/components'
 import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
 import { Color, TabBarHeight } from '@/ui'
 import { BlurView } from 'expo-blur'
-import { router } from 'expo-router'
-import { Animated, ScrollView, View, Dimensions } from 'react-native'
+import { Animated, View, Dimensions, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+const screenH = Dimensions.get('window').height
 
 export default function HomeTab() {
   const { top, bottom } = useSafeAreaInsets()
-  const screenH = Dimensions.get('window').height
 
-  const positions = { top: 0, middle: top + 192, bottom: screenH }
-
-  const { panHandlers, onScroll, layerStyle } = useLayerLayout({
-    positions,
-    offset: 54,
+  const { panHandlers, onScroll, layerStyle, paddingTop } = useLayerLayout({
+    positions: { top: 0, middle: top + 192, bottom: screenH },
+    offset: 64,
+    paddingTop: top + 64,
   })
 
   return (
@@ -30,22 +29,36 @@ export default function HomeTab() {
             borderTopLeftRadius: 24,
           }}
         >
-          <ScrollView
-            scrollEventThrottle={16}
+          <FlatList
             onScroll={onScroll}
+            scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              <View>
+                <Animated.View style={{ height: paddingTop }} />
+              </View>
+            }
             contentContainerStyle={{
-              paddingTop: 32,
-              paddingBottom: TabBarHeight + bottom + 48,
               marginHorizontal: 24,
-              gap: 24,
+              paddingTop: 24,
+              paddingBottom: TabBarHeight + bottom + 24,
             }}
-          >
-            <MerchantList
-              onPress={(id) => router.push('/place/' + id)}
-              merhcants={merchantMock}
-            />
-          </ScrollView>
+            data={merchantMock}
+            renderItem={(item) => (
+              <View>
+                <MerchantListItem merhcant={item.item} />
+                {item.index !== merchantMock.length - 1 && (
+                  <View
+                    style={{
+                      marginVertical: 24,
+                      backgroundColor: Color.GRY + '1A',
+                      height: 0.5,
+                    }}
+                  />
+                )}
+              </View>
+            )}
+          />
         </BlurView>
       </Animated.View>
       <Toolbar />

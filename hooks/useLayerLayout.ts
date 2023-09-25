@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   Animated,
   NativeScrollEvent,
@@ -15,29 +15,45 @@ interface LayoutConfig {
     bottom: number
   }
   offset: number
+  paddingTop: number
 }
 
 export const useLayerLayout = ({
   positions: { top, middle, bottom },
   offset,
+  paddingTop,
 }: LayoutConfig) => {
-  const animation = useRef(new Animated.Value(middle)).current
+  const animation = useRef(new Animated.Value(middle))
   const currentPosition = useRef<number>(middle)
   const stickPosition = useRef<number>(middle)
   const isOffsetNull = useRef<boolean>(true)
 
-  animation.addListener(({ value }) => {
-    currentPosition.current = value
-  })
+  useEffect(() => {
+    const listener = animation.current.addListener(({ value }) => {
+      currentPosition.current = value
+    })
+    return () => {
+      animation.current.removeListener(listener)
+    }
+  }, [animation])
 
-  const moveToPosition = (toValue: number) => {
-    stickPosition.current = toValue
-    Animated.spring(animation, { toValue, useNativeDriver: true }).start()
-  }
+  const moveToPosition = useCallback(
+    (toValue: number) => {
+      stickPosition.current = toValue
+      Animated.spring(animation.current, {
+        toValue,
+        useNativeDriver: false,
+      }).start()
+    },
+    [animation]
+  )
 
-  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    isOffsetNull.current = event.nativeEvent.contentOffset.y === 0
-  }
+  const onScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      isOffsetNull.current = event.nativeEvent.contentOffset.y === 0
+    },
+    []
+  )
 
   const pan = useRef(
     PanResponder.create({
@@ -50,7 +66,7 @@ export const useLayerLayout = ({
         return true
       },
       onPanResponderMove(_, gestureState) {
-        animation.setValue(stickPosition.current + gestureState.dy)
+        animation.current.setValue(stickPosition.current + gestureState.dy)
       },
       onPanResponderRelease() {
         const position = currentPosition.current
@@ -63,20 +79,31 @@ export const useLayerLayout = ({
         }
       },
     })
-  ).current
+  )
 
-  const panHandlers = pan.panHandlers
+  const layerStyle: StyleProp<ViewStyle> = useMemo(
+    () => ({
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      transform: [{ translateY: animation.current }],
+    }),
+    [animation]
+  )
 
-  const layerStyle: StyleProp<ViewStyle> = {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    transform: [{ translateY: animation }],
-  }
+  const paddingResult = useMemo(
+    () =>
+      animation.current.interpolate({
+        inputRange: [0, middle],
+        outputRange: [paddingTop, 0],
+      }),
+    [animation]
+  )
 
   return {
-    panHandlers,
     onScroll,
     layerStyle,
+    paddingTop: paddingResult,
+    panHandlers: pan.current.panHandlers,
   }
 }
