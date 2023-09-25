@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Animated,
   NativeScrollEvent,
@@ -14,15 +14,16 @@ interface LayoutConfig {
     middle: number
     bottom: number
   }
-  offset: number
+  panOffset: number
   paddingTop: number
 }
 
 export const useLayerLayout = ({
   positions: { top, middle, bottom },
-  offset,
+  panOffset,
   paddingTop,
 }: LayoutConfig) => {
+  const [layerPosition, setLayerPosition] = useState<number>(middle)
   const animation = useRef(new Animated.Value(middle))
   const currentPosition = useRef<number>(middle)
   const stickPosition = useRef<number>(middle)
@@ -41,9 +42,11 @@ export const useLayerLayout = ({
     (toValue: number) => {
       stickPosition.current = toValue
       Animated.spring(animation.current, {
-        toValue,
+        restSpeedThreshold: 0.1,
+        restDisplacementThreshold: 0.1,
         useNativeDriver: false,
-      }).start()
+        toValue,
+      }).start(() => setLayerPosition(toValue))
     },
     [animation]
   )
@@ -70,15 +73,24 @@ export const useLayerLayout = ({
       },
       onPanResponderRelease() {
         const position = currentPosition.current
-        if (position < middle - offset) {
+        if (position < middle - panOffset) {
           moveToPosition(top)
-        } else if (position > middle + offset) {
+        } else if (position > middle + panOffset) {
           moveToPosition(bottom)
         } else {
           moveToPosition(middle)
         }
       },
     })
+  )
+
+  const paddingResult = useMemo(
+    () =>
+      animation.current.interpolate({
+        inputRange: [0, middle],
+        outputRange: [paddingTop, 0],
+      }),
+    [animation]
   )
 
   const layerStyle: StyleProp<ViewStyle> = useMemo(
@@ -91,19 +103,12 @@ export const useLayerLayout = ({
     [animation]
   )
 
-  const paddingResult = useMemo(
-    () =>
-      animation.current.interpolate({
-        inputRange: [0, middle],
-        outputRange: [paddingTop, 0],
-      }),
-    [animation]
-  )
-
   return {
     onScroll,
-    layerStyle,
-    paddingTop: paddingResult,
+    moveToPosition,
+    layerPosition,
     panHandlers: pan.current.panHandlers,
+    paddingTop: paddingResult,
+    layerStyle,
   }
 }

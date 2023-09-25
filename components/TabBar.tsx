@@ -65,7 +65,7 @@ export const TabBar = () => {
           />
           <TabButton
             tab={'home'}
-            label={'Home'}
+            label={'Explore'}
             active={path.includes('home')}
             icon={<Compass color={Color.GRY} strokeWidth={2.5} />}
           />
