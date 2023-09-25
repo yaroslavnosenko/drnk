@@ -52,11 +52,11 @@ export default function HomeTab() {
   const {
     moveToPosition,
     onScroll,
+    animation,
     panHandlers,
     layerStyle,
     layerPosition,
-    paddingTop,
-  } = useLayerLayout({ positions, panOffset: 72, paddingTop: top + 64 })
+  } = useLayerLayout({ positions, panOffset: 72 })
 
   const handlePress = (id: string) => {
     router.push('/places/' + id)
@@ -75,7 +75,14 @@ export default function HomeTab() {
           scrollEnabled={layerPosition === positions.top}
           ListHeaderComponent={
             <View>
-              <Animated.View style={{ height: paddingTop }} />
+              <Animated.View
+                style={{
+                  height: animation.interpolate({
+                    inputRange: [0, positions.middle],
+                    outputRange: [top + 64, 0],
+                  }),
+                }}
+              />
               <MerchantListHeader count={17} />
             </View>
           }

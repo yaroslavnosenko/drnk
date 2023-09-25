@@ -15,13 +15,11 @@ interface LayoutConfig {
     bottom: number
   }
   panOffset: number
-  paddingTop: number
 }
 
 export const useLayerLayout = ({
   positions: { top, middle, bottom },
   panOffset,
-  paddingTop,
 }: LayoutConfig) => {
   const [layerPosition, setLayerPosition] = useState<number>(middle)
   const animation = useRef(new Animated.Value(middle))
@@ -84,15 +82,6 @@ export const useLayerLayout = ({
     })
   )
 
-  const paddingResult = useMemo(
-    () =>
-      animation.current.interpolate({
-        inputRange: [0, middle],
-        outputRange: [paddingTop, 0],
-      }),
-    [animation]
-  )
-
   const layerStyle: StyleProp<ViewStyle> = useMemo(
     () => ({
       position: 'absolute',
@@ -106,9 +95,9 @@ export const useLayerLayout = ({
   return {
     onScroll,
     moveToPosition,
-    layerPosition,
+    animation: animation.current,
     panHandlers: pan.current.panHandlers,
-    paddingTop: paddingResult,
+    layerPosition,
     layerStyle,
   }
 }
