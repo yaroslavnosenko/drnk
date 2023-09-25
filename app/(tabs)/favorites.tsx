@@ -1,9 +1,6 @@
-import { MerchantList } from '@/components'
-import { merchantMock } from '@/mocks'
 import { Color, TabBarHeight } from '@/ui'
 import { View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 
 const Header = styled.Text({
@@ -15,13 +12,10 @@ export default function FavoritesTab() {
   return (
     <View style={{ flex: 1, backgroundColor: Color.WYT }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <SafeAreaView>
-          <Header style={{ marginHorizontal: 16, marginVertical: 32 }}>
-            Favorites
-          </Header>
-          <MerchantList onPress={console.log} merhcants={merchantMock} />
-          <View style={{ paddingBottom: TabBarHeight + 32 }} />
-        </SafeAreaView>
+        <Header style={{ marginHorizontal: 16, marginVertical: 32 }}>
+          Favorites
+        </Header>
+        <View style={{ paddingBottom: TabBarHeight + 32 }} />
       </ScrollView>
     </View>
   )
