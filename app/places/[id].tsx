@@ -4,7 +4,7 @@ import { View, Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
-export default function PlaceScreen() {
+export default function PlacesScreen() {
   const screenW = Dimensions.get('window').width
   const imageHeight = (screenW / 4) * 3
 

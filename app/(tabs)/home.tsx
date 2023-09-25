@@ -3,6 +3,7 @@ import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
 import { Color, TabBarHeight } from '@/ui'
 import { BlurView } from 'expo-blur'
+import { router } from 'expo-router'
 import { Animated, View, Dimensions, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -14,17 +15,20 @@ export default function HomeTab() {
   const { panHandlers, onScroll, layerStyle, paddingTop } = useLayerLayout({
     positions: { top: 0, middle: top + 192, bottom: screenH },
     offset: 64,
-    paddingTop: top + 64,
+    paddingTop: top + 72,
   })
+
+  const handlePress = (id: string) => {
+    router.push('/places/' + id)
+  }
 
   return (
     <View style={{ flex: 1 }}>
       <Map places={placesMock} />
       <Animated.View style={[layerStyle]} {...panHandlers}>
-        <BlurView
+        <View
           style={{
-            backgroundColor: Color.WYT + 'CC',
-            overflow: 'hidden',
+            backgroundColor: Color.WYT,
             borderTopRightRadius: 24,
             borderTopLeftRadius: 24,
           }}
@@ -39,15 +43,18 @@ export default function HomeTab() {
               </View>
             }
             contentContainerStyle={{
-              marginHorizontal: 24,
+              marginHorizontal: 16,
               paddingTop: 24,
               paddingBottom: TabBarHeight + bottom + 24,
             }}
             data={merchantMock}
-            renderItem={(item) => (
+            renderItem={({ item, index }) => (
               <View>
-                <MerchantListItem merhcant={item.item} />
-                {item.index !== merchantMock.length - 1 && (
+                <MerchantListItem
+                  merhcant={item}
+                  onPress={() => handlePress(item.id)}
+                />
+                {index !== merchantMock.length - 1 && (
                   <View
                     style={{
                       marginVertical: 24,
@@ -59,7 +66,7 @@ export default function HomeTab() {
               </View>
             )}
           />
-        </BlurView>
+        </View>
       </Animated.View>
       <Toolbar />
     </View>

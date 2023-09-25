@@ -8,9 +8,9 @@ import { ViewStyle, StyleProp, TextInput } from 'react-native'
 import { useRef } from 'react'
 
 const Container = styled.View({
-  marginTop: 4,
-  marginLeft: 16,
-  marginRight: 16,
+  marginTop: 8,
+  marginLeft: 24,
+  marginRight: 24,
 })
 
 const Bar = styled.View({
@@ -22,7 +22,7 @@ const Bar = styled.View({
 const SearchInput = styled.TextInput({
   fontFamily: 'Outfit_500Medium',
   fontSize: 16,
-  height: 48,
+  height: 56,
   flex: 1,
   color: Color.BLK,
 })
@@ -43,8 +43,14 @@ export const Toolbar = () => {
   return (
     <SafeAreaView edges={{ bottom: 'off', top: 'additive' }}>
       <Container>
-        <BlurView style={{ ...BlurStyle }}>
-          <Bar style={{ height: 56 }}>
+        <BlurView
+          style={{
+            ...BlurStyle,
+            borderWidth: 0.5,
+            borderColor: Color.GRY + '1A',
+          }}
+        >
+          <Bar>
             <IconButton onPress={() => searchRef.current?.focus()}>
               <Search color={Color.GRY} size={24} strokeWidth={2.5} />
             </IconButton>
