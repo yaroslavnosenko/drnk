@@ -1,41 +1,37 @@
-import { placesMock } from '@/mocks'
-import { Color } from '@/ui'
-import { ScrollView, View } from 'react-native'
 import { Map, MerchantList, Toolbar } from '@/components'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { merchantMock } from '@/mocks'
+import { useLayerLayout } from '@/hooks'
+import { merchantMock, placesMock } from '@/mocks'
+import { Color } from '@/ui'
+import { BlurView } from 'expo-blur'
+import { Animated, ScrollView, View } from 'react-native'
 
 export default function HomeTab() {
-  const { top, bottom } = useSafeAreaInsets()
+  const { panHandlers, onScroll, layerStyle } = useLayerLayout({
+    positions: { top: 0, middle: 196, bottom: 640 },
+  })
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ position: 'absolute', width: '100%', height: '100%' }}>
-        <Map places={placesMock} />
-      </View>
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '100%',
-          zIndex: 999,
-        }}
-      >
-        <Toolbar />
-      </View>
-      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-        <View style={{ height: 196 + top }}></View>
-        <View
+      <Map places={placesMock} />
+      <Animated.View style={[layerStyle]} {...panHandlers}>
+        <BlurView
           style={{
-            backgroundColor: Color.WYT,
-            borderTopRightRadius: 24,
-            borderTopLeftRadius: 24,
-            paddingTop: 32,
-            paddingBottom: bottom + 56 + 32,
+            backgroundColor: Color.WYT + 'CC',
+            overflow: 'hidden',
+            borderTopRightRadius: 16,
+            borderTopLeftRadius: 16,
           }}
         >
-          <MerchantList merhcants={merchantMock} />
-        </View>
-      </ScrollView>
+          <ScrollView
+            style={{ paddingTop: 32 }}
+            scrollEventThrottle={16}
+            onScroll={onScroll}
+            showsVerticalScrollIndicator={false}
+          >
+            <MerchantList merhcants={merchantMock} />
+          </ScrollView>
+        </BlurView>
+      </Animated.View>
+      <Toolbar />
     </View>
   )
 }

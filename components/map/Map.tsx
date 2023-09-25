@@ -1,10 +1,10 @@
 import MapView from 'react-native-maps'
 import { Place } from '@/types'
 import { Pin } from './Pin'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 const ManhattanRegion = {
-  latitude: 40.754932 - 0.01,
+  latitude: 40.754932,
   longitude: -73.984016,
   latitudeDelta: 0.03,
   longitudeDelta: 0.03,
