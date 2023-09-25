@@ -83,7 +83,7 @@ const Item = ({ merhcant }: ItemProps) => {
 
 export const MerchantList = ({ merhcants }: MerchantListProps) => {
   return (
-    <View style={{ paddingHorizontal: 16, gap: 24 }}>
+    <>
       {merhcants &&
         merhcants.map((merhcant) => (
           <React.Fragment key={merhcant.id}>
@@ -92,11 +92,10 @@ export const MerchantList = ({ merhcants }: MerchantListProps) => {
               style={{
                 height: 0.5,
                 backgroundColor: Color.GRY + '33',
-                marginRight: -16,
               }}
             />
           </React.Fragment>
         ))}
-    </View>
+    </>
   )
 }

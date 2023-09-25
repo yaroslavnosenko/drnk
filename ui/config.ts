@@ -4,3 +4,5 @@ export const Color = {
   GRY: '#282729',
   BLK: '#212427',
 }
+
+export const TabBarHeight = 56

@@ -1,14 +1,22 @@
 import { Map, MerchantList, Toolbar } from '@/components'
 import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
-import { Color } from '@/ui'
+import { Color, TabBarHeight } from '@/ui'
 import { BlurView } from 'expo-blur'
-import { Animated, ScrollView, View } from 'react-native'
+import { Animated, ScrollView, View, Dimensions } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function HomeTab() {
+  const { top, bottom } = useSafeAreaInsets()
+  const screenH = Dimensions.get('window').height
+
+  const positions = { top: 0, middle: top + 192, bottom: screenH }
+
   const { panHandlers, onScroll, layerStyle } = useLayerLayout({
-    positions: { top: 0, middle: 196, bottom: 640 },
+    positions,
+    offset: 54,
   })
+
   return (
     <View style={{ flex: 1 }}>
       <Map places={placesMock} />
@@ -22,10 +30,15 @@ export default function HomeTab() {
           }}
         >
           <ScrollView
-            style={{ paddingTop: 32 }}
             scrollEventThrottle={16}
             onScroll={onScroll}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingTop: 32,
+              paddingBottom: TabBarHeight + bottom + 48,
+              marginHorizontal: 16,
+              gap: 24,
+            }}
           >
             <MerchantList merhcants={merchantMock} />
           </ScrollView>

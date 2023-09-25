@@ -14,23 +14,25 @@ interface LayoutConfig {
     middle: number
     bottom: number
   }
+  offset: number
 }
 
 export const useLayerLayout = ({
   positions: { top, middle, bottom },
+  offset,
 }: LayoutConfig) => {
   const animation = useRef(new Animated.Value(middle)).current
   const currentPosition = useRef<number>(middle)
-  const startPosition = useRef<number>(middle)
+  const stickPosition = useRef<number>(middle)
   const isOffsetNull = useRef<boolean>(true)
 
   animation.addListener(({ value }) => {
     currentPosition.current = value
   })
 
-  const moveToPosition = (pos: number) => {
-    startPosition.current = pos
-    Animated.spring(animation, { toValue: pos, useNativeDriver: true }).start()
+  const moveToPosition = (toValue: number) => {
+    stickPosition.current = toValue
+    Animated.spring(animation, { toValue, useNativeDriver: true }).start()
   }
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -40,7 +42,7 @@ export const useLayerLayout = ({
   const pan = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: (_, gestureState) => {
-        if (startPosition.current === top) {
+        if (stickPosition.current === top) {
           if (gestureState.dy < 0 || !isOffsetNull.current) {
             return false
           }
@@ -48,13 +50,13 @@ export const useLayerLayout = ({
         return true
       },
       onPanResponderMove(_, gestureState) {
-        animation.setValue(startPosition.current + gestureState.dy)
+        animation.setValue(stickPosition.current + gestureState.dy)
       },
       onPanResponderRelease() {
         const position = currentPosition.current
-        if (position < 164) {
+        if (position < middle - offset) {
           moveToPosition(top)
-        } else if (position > 256) {
+        } else if (position > middle + offset) {
           moveToPosition(bottom)
         } else {
           moveToPosition(middle)
