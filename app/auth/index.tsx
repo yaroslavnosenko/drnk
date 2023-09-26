@@ -15,7 +15,7 @@ const Heading = styled.Text({
 
 const Logo = styled.Text({
   fontSize: 32,
-  fontFamily: 'Outfit_700Bold',
+  fontFamily: 'Outfit_600SemiBold',
   color: Color.BLK,
 })
 

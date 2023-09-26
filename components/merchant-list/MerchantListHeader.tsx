@@ -1,4 +1,5 @@
 import { Button, Color } from '@/ui'
+import { opacity } from '@/utils'
 import { Clock } from 'lucide-react-native'
 import styled from 'styled-components/native'
 
@@ -25,7 +26,7 @@ export const MerchantListHeader = ({ count }: Props) => {
     <Container>
       <Heading>{count} Results</Heading>
       <Button
-        border={Color.BLK + '1A'}
+        border={opacity(Color.BLK, 0.2)}
         icon={<Clock color={Color.BLK} />}
         color={Color.BLK}
         bg={Color.WYT}

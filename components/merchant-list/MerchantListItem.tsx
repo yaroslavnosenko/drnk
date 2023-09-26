@@ -1,5 +1,6 @@
 import { Merchant } from '@/types'
 import { Color } from '@/ui'
+import { opacity } from '@/utils'
 import { Star, MapPin, Clock, Heart } from 'lucide-react-native'
 import React from 'react'
 import { TouchableOpacityProps, View } from 'react-native'
@@ -19,6 +20,7 @@ const Image = styled.Image({
   height: 120,
   width: 160,
   borderRadius: 12,
+  backgroundColor: opacity(Color.BLK, 0.1),
 })
 
 const Title = styled.Text({
@@ -39,7 +41,7 @@ const FavoriteButton = styled.TouchableOpacity({
 })
 
 export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
-  const { image, name, type, rating, distance, start_time, end_time, id } =
+  const { image, name, type, rating, distance, start_time, end_time, region } =
     merhcant
   return (
     <ItemContainer {...props}>
@@ -59,8 +61,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
           }}
         >
           <Type>
-            <MapPin strokeWidth={2.5} size={14} color={Color.BLK} /> Greenwich
-            Village
+            <MapPin strokeWidth={2.5} size={14} color={Color.BLK} /> {region}
           </Type>
           <Type>{distance} mi</Type>
         </View>
@@ -79,7 +80,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
           }}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Clock strokeWidth={3} size={14} color={Color.BLK + ''} />
+            <Clock strokeWidth={3} size={14} color={Color.BLK} />
             <Type
               style={{
                 marginLeft: 4,
@@ -91,7 +92,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
             </Type>
           </View>
           <FavoriteButton>
-            <Heart color={Color.BLK} />
+            <Heart strokeWidth={2.5} color={Color.BLK} />
           </FavoriteButton>
         </View>
       </View>

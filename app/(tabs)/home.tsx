@@ -7,6 +7,7 @@ import {
 import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
 import { Button, Color, TabBarHeight } from '@/ui'
+import { opacity } from '@/utils'
 import { router } from 'expo-router'
 import { MapIcon, ScrollText } from 'lucide-react-native'
 import { useMemo } from 'react'
@@ -25,7 +26,7 @@ const screenH = Dimensions.get('window').height
 
 const Separator = styled.View({
   height: 0.5,
-  backgroundColor: Color.BLK + '1A',
+  backgroundColor: opacity(Color.BLK, 0.2),
   marginVertical: 24,
 })
 
@@ -42,7 +43,7 @@ export default function HomeTab() {
   )
 
   const positions = useMemo(
-    () => ({ top: 0, middle: top + 320, bottom: screenH }),
+    () => ({ top: 0, middle: top + 256, bottom: screenH }),
     [top]
   )
 

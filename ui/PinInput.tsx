@@ -17,7 +17,7 @@ export const PinInput = ({ onPinSubmit, pinCount = 6 }: InputProps) => {
         pinCount={6}
         style={{ width: inputW, height: 52 }}
         placeholderCharacter="•"
-        placeholderTextColor={Color.BLK + 'aa'}
+        placeholderTextColor={Color.BLK}
         codeInputFieldStyle={{
           backgroundColor: 'white',
           borderWidth: 0,

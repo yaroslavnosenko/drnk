@@ -1,5 +1,6 @@
 import { merchantMock } from '@/mocks'
 import { Button, Color } from '@/ui'
+import { opacity } from '@/utils'
 import { BlurView } from 'expo-blur'
 import { Heart, MapPin, Star } from 'lucide-react-native'
 import { View, Dimensions, TouchableOpacity } from 'react-native'
@@ -9,7 +10,7 @@ import styled from 'styled-components/native'
 
 const Header = styled.Text({
   fontSize: 24,
-  fontFamily: 'Outfit_500Medium',
+  fontFamily: 'Outfit_600SemiBold',
 })
 
 const MutedText = styled.Text({
@@ -20,7 +21,7 @@ const MutedText = styled.Text({
 })
 
 const ListHeading = styled.Text({
-  fontFamily: 'Outfit_600SemiBold',
+  fontFamily: 'Outfit_500Medium',
   fontSize: 20,
   color: Color.BLK,
   marginBottom: 16,
@@ -66,7 +67,7 @@ export default function PlacesScreen() {
             borderTopLeftRadius: 24,
             marginTop: imageHeight - 24,
             paddingHorizontal: 16,
-            paddingTop: 24,
+            paddingTop: 16,
           }}
         >
           <View
@@ -107,7 +108,7 @@ export default function PlacesScreen() {
           <View
             style={{
               height: 0.5,
-              backgroundColor: Color.BLK + '1A',
+              backgroundColor: opacity(Color.BLK, 0.2),
               marginVertical: 24,
             }}
           />
@@ -143,7 +144,7 @@ export default function PlacesScreen() {
           paddingHorizontal: 16,
           justifyContent: 'flex-end',
           borderTopWidth: 0.5,
-          borderTopColor: Color.BLK + '1A',
+          borderTopColor: opacity(Color.BLK, 0.2),
         }}
       >
         <Button radius={16}>Get Directions</Button>

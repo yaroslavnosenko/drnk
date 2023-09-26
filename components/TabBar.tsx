@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 import { router, usePathname } from 'expo-router'
 import { TouchableWithoutFeedback } from 'react-native'
+import { opacity } from '@/utils'
 
 const Container = styled.View({
   height: 56,
@@ -24,7 +25,7 @@ const ButtonLabel = styled.Text({
   marginTop: 2,
   fontSize: 12,
   fontFamily: 'Outfit_500Medium',
-  color: Color.WYT,
+  color: Color.BLK,
 })
 
 interface TabButtonProps {
@@ -49,12 +50,11 @@ export const TabBar = () => {
   const path = usePathname()
   return (
     <BlurView
-      tint={'dark'}
       style={{
-        backgroundColor: Color.BLK + 'CC',
+        backgroundColor: opacity(Color.WYT, 0.8),
         overflow: 'hidden',
         borderTopWidth: 0.5,
-        borderTopColor: Color.BLK + '1A',
+        borderTopColor: opacity(Color.BLK, 0.2),
       }}
     >
       <SafeAreaView edges={{ bottom: 'additive', top: 'off' }}>
@@ -63,19 +63,19 @@ export const TabBar = () => {
             tab={'favorites'}
             label={'Favorites'}
             active={path.includes('favorites')}
-            icon={<Heart color={Color.WYT} strokeWidth={2.5} />}
+            icon={<Heart color={Color.BLK} strokeWidth={2.5} />}
           />
           <TabButton
             tab={'home'}
             label={'Explore'}
             active={path.includes('home')}
-            icon={<Compass color={Color.WYT} strokeWidth={2.5} />}
+            icon={<Compass color={Color.BLK} strokeWidth={2.5} />}
           />
           <TabButton
             tab={'account'}
             label={'Account'}
             active={path.includes('account')}
-            icon={<User2 color={Color.WYT} strokeWidth={2.5} />}
+            icon={<User2 color={Color.BLK} strokeWidth={2.5} />}
           />
         </Container>
       </SafeAreaView>

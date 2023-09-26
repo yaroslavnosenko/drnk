@@ -14,7 +14,7 @@ const Card = styled.View({
 const Text = styled.Text({
   color: 'white',
   fontSize: 12,
-  fontFamily: 'Outfit_700Bold',
+  fontFamily: 'Outfit_600SemiBold',
 })
 
 interface PinProps {
@@ -48,7 +48,7 @@ export const Pin = ({
         <Text
           style={{
             color: active ? Color.BLK : Color.WYT,
-            fontFamily: active ? 'Outfit_700Bold' : 'Outfit_500Medium',
+            fontFamily: active ? 'Outfit_600SemiBold' : 'Outfit_500Medium',
           }}
         >
           {text}

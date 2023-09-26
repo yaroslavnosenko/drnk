@@ -6,6 +6,7 @@ import styled from 'styled-components/native'
 import { SlidersHorizontal, Search } from 'lucide-react-native'
 import { ViewStyle, StyleProp, TextInput } from 'react-native'
 import { useRef } from 'react'
+import { opacity } from '@/utils'
 
 const Container = styled.View({
   marginTop: 8,
@@ -47,7 +48,7 @@ export const Toolbar = () => {
           style={{
             ...BlurStyle,
             borderWidth: 0.5,
-            borderColor: Color.BLK + '1A',
+            borderColor: opacity(Color.BLK, 0.2),
           }}
         >
           <Bar>
