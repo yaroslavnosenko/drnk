@@ -12,9 +12,10 @@ const ManhattanRegion = {
 
 interface MapProps {
   places: Place[]
+  onTouchStart: () => void
 }
 
-export const Map = ({ places }: MapProps) => {
+export const Map = ({ places, onTouchStart }: MapProps) => {
   const [activePlace, setActivePlace] = useState<Place | null>(null)
 
   const onPinPress = (place: Place) => {
@@ -28,6 +29,7 @@ export const Map = ({ places }: MapProps) => {
       showsPointsOfInterest={false}
       showsUserLocation={true}
       pitchEnabled={false}
+      onTouchStart={onTouchStart}
       style={{
         position: 'absolute',
         width: '100%',

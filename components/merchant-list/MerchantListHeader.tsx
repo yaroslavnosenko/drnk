@@ -23,7 +23,7 @@ const Heading = styled.Text({
 export const MerchantListHeader = ({ count }: Props) => {
   return (
     <Container>
-      <Heading>{count} Happy Hours</Heading>
+      <Heading>{count} Results</Heading>
       <Button
         border={Color.GRY + '1A'}
         icon={<Clock color={Color.GRY} />}

@@ -42,7 +42,7 @@ export default function HomeTab() {
   )
 
   const positions = useMemo(
-    () => ({ top: 0, middle: top + 192, bottom: screenH }),
+    () => ({ top: 0, middle: top + 320, bottom: screenH }),
     [top]
   )
 
@@ -53,7 +53,7 @@ export default function HomeTab() {
     panHandlers,
     layerStyle,
     layerPosition,
-  } = useLayerLayout({ positions, panOffset: 72 })
+  } = useLayerLayout({ positions, panOffset: 160 })
 
   const handlePress = (id: string) => {
     router.push('/places/' + id)
@@ -61,7 +61,10 @@ export default function HomeTab() {
 
   return (
     <View style={{ flex: 1, backgroundColor: Color.WYT }}>
-      <Map places={placesMock} />
+      <Map
+        places={placesMock}
+        onTouchStart={() => moveToPosition(positions.bottom)}
+      />
       <Animated.View style={[layerStyle]} {...panHandlers}>
         <FlatList
           data={merchantMock}

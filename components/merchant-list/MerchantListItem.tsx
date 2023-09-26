@@ -1,6 +1,6 @@
 import { Merchant } from '@/types'
 import { Color } from '@/ui'
-import { Star, MapPin, Clock } from 'lucide-react-native'
+import { Star, MapPin, Clock, Heart } from 'lucide-react-native'
 import React from 'react'
 import { TouchableOpacityProps, View } from 'react-native'
 import styled from 'styled-components/native'
@@ -34,6 +34,10 @@ const Type = styled.Text({
   opacity: 0.6,
 })
 
+const FavoriteButton = styled.TouchableOpacity({
+  padding: 8,
+})
+
 export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
   const { image, name, type, rating, distance, start_time, end_time, id } =
     merhcant
@@ -47,31 +51,48 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
         }}
       />
       <View style={{ flex: 1 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 8,
+          }}
+        >
           <Type>
             <MapPin strokeWidth={2.5} size={14} color={Color.BLK} /> Greenwich
             Village
           </Type>
           <Type>{distance} mi</Type>
         </View>
-        <View style={{ marginVertical: 12 }}>
+        <View style={{ marginTop: 4 }}>
           <Title>{name}</Title>
           <Type>
             {type}, {rating}{' '}
             <Star strokeWidth={2.5} size={14} color={Color.BLK} />
           </Type>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Clock strokeWidth={3} size={14} color={Color.BLK + ''} />
-          <Type
-            style={{
-              marginLeft: 4,
-              fontFamily: 'Outfit_500Medium',
-              opacity: 1,
-            }}
-          >
-            {start_time} - {end_time}
-          </Type>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Clock strokeWidth={3} size={14} color={Color.BLK + ''} />
+            <Type
+              style={{
+                marginLeft: 4,
+                fontFamily: 'Outfit_500Medium',
+                opacity: 1,
+              }}
+            >
+              {start_time} - {end_time}
+            </Type>
+          </View>
+          <FavoriteButton>
+            <Heart color={Color.GRY} />
+          </FavoriteButton>
         </View>
       </View>
     </ItemContainer>

@@ -24,6 +24,7 @@ const ButtonLabel = styled.Text({
   marginTop: 2,
   fontSize: 12,
   fontFamily: 'Outfit_500Medium',
+  color: Color.WYT,
 })
 
 interface TabButtonProps {
@@ -48,8 +49,9 @@ export const TabBar = () => {
   const path = usePathname()
   return (
     <BlurView
+      tint={'dark'}
       style={{
-        backgroundColor: Color.WYT + 'CC',
+        backgroundColor: Color.GRY + 'CC',
         overflow: 'hidden',
         borderTopWidth: 0.5,
         borderTopColor: Color.GRY + '1A',
@@ -61,19 +63,19 @@ export const TabBar = () => {
             tab={'favorites'}
             label={'Favorites'}
             active={path.includes('favorites')}
-            icon={<Heart color={Color.GRY} strokeWidth={2.5} />}
+            icon={<Heart color={Color.WYT} strokeWidth={2.5} />}
           />
           <TabButton
             tab={'home'}
             label={'Explore'}
             active={path.includes('home')}
-            icon={<Compass color={Color.GRY} strokeWidth={2.5} />}
+            icon={<Compass color={Color.WYT} strokeWidth={2.5} />}
           />
           <TabButton
             tab={'account'}
             label={'Account'}
             active={path.includes('account')}
-            icon={<User2 color={Color.GRY} strokeWidth={2.5} />}
+            icon={<User2 color={Color.WYT} strokeWidth={2.5} />}
           />
         </Container>
       </SafeAreaView>

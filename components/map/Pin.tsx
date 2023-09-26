@@ -13,8 +13,8 @@ const Card = styled.View({
 
 const Text = styled.Text({
   color: 'white',
-  fontSize: 10,
-  fontWeight: 'bold',
+  fontSize: 12,
+  fontFamily: 'Outfit_700Bold',
 })
 
 interface PinProps {
@@ -38,8 +38,21 @@ export const Pin = ({
       onPress={onPress}
       zIndex={active ? 10000 : undefined}
     >
-      <Card style={{ backgroundColor: active ? Color.ORG : Color.GRY }}>
-        <Text>{text}</Text>
+      <Card
+        style={{
+          backgroundColor: active ? Color.WYT : Color.GRY,
+          borderColor: Color.GRY,
+          borderWidth: active ? 2 : 0,
+        }}
+      >
+        <Text
+          style={{
+            color: active ? Color.GRY : Color.WYT,
+            fontFamily: active ? 'Outfit_700Bold' : 'Outfit_500Medium',
+          }}
+        >
+          {text}
+        </Text>
       </Card>
     </Marker>
   )

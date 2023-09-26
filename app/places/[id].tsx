@@ -1,6 +1,6 @@
 import { merchantMock } from '@/mocks'
 import { Color } from '@/ui'
-import { View, Dimensions } from 'react-native'
+import { View, Dimensions, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
@@ -42,7 +42,9 @@ export default function PlacesScreen() {
             borderTopLeftRadius: 24,
             marginTop: imageHeight - 24,
           }}
-        ></View>
+        >
+          <Text>Super Bars</Text>
+        </View>
       </ScrollView>
     </View>
   )
