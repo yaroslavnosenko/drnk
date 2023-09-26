@@ -25,9 +25,9 @@ export const MerchantListHeader = ({ count }: Props) => {
     <Container>
       <Heading>{count} Results</Heading>
       <Button
-        border={Color.GRY + '1A'}
-        icon={<Clock color={Color.GRY} />}
-        color={Color.GRY}
+        border={Color.BLK + '1A'}
+        icon={<Clock color={Color.BLK} />}
+        color={Color.BLK}
         bg={Color.WYT}
         radius={1000}
         size="sm"

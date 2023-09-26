@@ -22,13 +22,13 @@ const StyledInput = styled.TextInput({
   fontSize: 16,
   flex: 1,
   fontFamily: 'Outfit_500Medium',
-  color: Color.GRY,
+  color: Color.BLK,
 })
 
 const Label = styled.Text({
   fontSize: 16,
   fontFamily: 'Outfit_400Regular',
-  color: Color.GRY,
+  color: Color.BLK,
   opacity: 0.7,
   marginLeft: 16,
   marginBottom: 8,
@@ -37,7 +37,6 @@ const Label = styled.Text({
 const ErrorText = styled.Text({
   fontSize: 14,
   fontFamily: 'Outfit_400Regular',
-  color: Color.ORG,
   marginTop: 8,
   marginLeft: 16,
 })

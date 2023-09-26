@@ -16,9 +16,8 @@ export const PinInput = ({ onPinSubmit, pinCount = 6 }: InputProps) => {
       <OTPInputView
         pinCount={6}
         style={{ width: inputW, height: 52 }}
-        selectionColor={Color.ORG}
         placeholderCharacter="•"
-        placeholderTextColor={Color.GRY + 'aa'}
+        placeholderTextColor={Color.BLK + 'aa'}
         codeInputFieldStyle={{
           backgroundColor: 'white',
           borderWidth: 0,

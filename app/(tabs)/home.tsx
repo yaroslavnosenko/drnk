@@ -25,7 +25,7 @@ const screenH = Dimensions.get('window').height
 
 const Separator = styled.View({
   height: 0.5,
-  backgroundColor: Color.GRY + '1A',
+  backgroundColor: Color.BLK + '1A',
   marginVertical: 24,
 })
 

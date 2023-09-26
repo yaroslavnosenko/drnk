@@ -40,14 +40,14 @@ export const Pin = ({
     >
       <Card
         style={{
-          backgroundColor: active ? Color.WYT : Color.GRY,
-          borderColor: Color.GRY,
+          backgroundColor: active ? Color.WYT : Color.BLK,
+          borderColor: Color.BLK,
           borderWidth: active ? 2 : 0,
         }}
       >
         <Text
           style={{
-            color: active ? Color.GRY : Color.WYT,
+            color: active ? Color.BLK : Color.WYT,
             fontFamily: active ? 'Outfit_700Bold' : 'Outfit_500Medium',
           }}
         >

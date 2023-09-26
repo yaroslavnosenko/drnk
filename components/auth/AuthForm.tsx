@@ -37,8 +37,7 @@ export const AuthForm = ({ onSignInWithGoogle, onSubmit }: AuthFormProps) => {
             placeholder="you@email.com"
             label="Email"
             autoFocus
-            selectionColor={Color.ORG}
-            icon={<Mail color={Color.GRY} strokeWidth={2.5} />}
+            icon={<Mail color={Color.BLK} strokeWidth={2.5} />}
             value={value}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -73,7 +72,7 @@ export const AuthForm = ({ onSignInWithGoogle, onSubmit }: AuthFormProps) => {
       <Button
         onPress={handleGoogle}
         bg="white"
-        color={Color.GRY}
+        color={Color.BLK}
         icon={<Google />}
         disabled={isSubmitSuccessful}
       >

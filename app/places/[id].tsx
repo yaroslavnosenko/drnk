@@ -78,7 +78,7 @@ export default function PlacesScreen() {
           >
             <Header>Analogue</Header>
             <TouchableOpacity style={{ padding: 12 }}>
-              <Heart color={Color.GRY} />
+              <Heart color={Color.BLK} />
             </TouchableOpacity>
           </View>
           <View
@@ -107,7 +107,7 @@ export default function PlacesScreen() {
           <View
             style={{
               height: 0.5,
-              backgroundColor: Color.GRY + '1A',
+              backgroundColor: Color.BLK + '1A',
               marginVertical: 24,
             }}
           />
@@ -143,7 +143,7 @@ export default function PlacesScreen() {
           paddingHorizontal: 16,
           justifyContent: 'flex-end',
           borderTopWidth: 0.5,
-          borderTopColor: Color.GRY + '1A',
+          borderTopColor: Color.BLK + '1A',
         }}
       >
         <Button radius={16}>Get Directions</Button>

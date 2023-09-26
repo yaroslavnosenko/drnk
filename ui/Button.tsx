@@ -50,7 +50,7 @@ const textStyles: ViewConfig = {
 }
 
 export const Button = ({
-  bg = Color.GRY,
+  bg = Color.BLK,
   color = Color.WYT,
   size = 'md',
   radius = 16,

@@ -91,7 +91,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
             </Type>
           </View>
           <FavoriteButton>
-            <Heart color={Color.GRY} />
+            <Heart color={Color.BLK} />
           </FavoriteButton>
         </View>
       </View>

@@ -51,10 +51,10 @@ export const TabBar = () => {
     <BlurView
       tint={'dark'}
       style={{
-        backgroundColor: Color.GRY + 'CC',
+        backgroundColor: Color.BLK + 'CC',
         overflow: 'hidden',
         borderTopWidth: 0.5,
-        borderTopColor: Color.GRY + '1A',
+        borderTopColor: Color.BLK + '1A',
       }}
     >
       <SafeAreaView edges={{ bottom: 'additive', top: 'off' }}>

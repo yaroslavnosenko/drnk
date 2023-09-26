@@ -47,15 +47,14 @@ export const Toolbar = () => {
           style={{
             ...BlurStyle,
             borderWidth: 0.5,
-            borderColor: Color.GRY + '1A',
+            borderColor: Color.BLK + '1A',
           }}
         >
           <Bar>
             <IconButton onPress={() => searchRef.current?.focus()}>
-              <Search color={Color.GRY} size={24} strokeWidth={2.5} />
+              <Search color={Color.BLK} size={24} strokeWidth={2.5} />
             </IconButton>
             <SearchInput
-              selectionColor={Color.ORG}
               ref={searchRef}
               placeholder="Search..."
               returnKeyType={'search'}
@@ -63,7 +62,7 @@ export const Toolbar = () => {
             />
             <IconButton onPress={() => router.push('/filter')}>
               <SlidersHorizontal
-                color={Color.GRY}
+                color={Color.BLK}
                 size={24}
                 strokeWidth={2.5}
               />
