@@ -76,7 +76,7 @@ export const Button = ({
   })
 
   return (
-    <ButtonContainer activeOpacity={0.8} {...props}>
+    <ButtonContainer activeOpacity={0.4} {...props}>
       {icon}
       <ButtonText>{children}</ButtonText>
     </ButtonContainer>

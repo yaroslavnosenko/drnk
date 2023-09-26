@@ -44,7 +44,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
   const { image, name, type, rating, distance, start_time, end_time, region } =
     merhcant
   return (
-    <ItemContainer {...props}>
+    <ItemContainer {...props} activeOpacity={0.4}>
       <Image
         height={130}
         width={172}
