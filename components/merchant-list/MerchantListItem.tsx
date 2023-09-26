@@ -22,7 +22,7 @@ const Image = styled.Image({
 })
 
 const Title = styled.Text({
-  fontFamily: 'Outfit_700Bold',
+  fontFamily: 'Outfit_600SemiBold',
   fontSize: 20,
   color: Color.BLK,
 })
@@ -66,7 +66,7 @@ export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
         </View>
         <View style={{ marginTop: 4 }}>
           <Title>{name}</Title>
-          <Type>
+          <Type style={{ marginTop: 4 }}>
             {type}, {rating}{' '}
             <Star strokeWidth={2.5} size={14} color={Color.BLK} />
           </Type>

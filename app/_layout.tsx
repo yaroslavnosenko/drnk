@@ -3,14 +3,14 @@ import {
   useFonts,
   Outfit_400Regular,
   Outfit_500Medium,
-  Outfit_700Bold,
+  Outfit_600SemiBold,
 } from '@expo-google-fonts/outfit'
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     Outfit_400Regular,
     Outfit_500Medium,
-    Outfit_700Bold,
+    Outfit_600SemiBold,
   })
 
   if (!fontsLoaded && !fontError) {

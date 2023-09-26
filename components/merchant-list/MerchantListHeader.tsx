@@ -16,7 +16,7 @@ const Container = styled.View({
 
 const Heading = styled.Text({
   fontSize: 24,
-  fontFamily: 'Outfit_700Bold',
+  fontFamily: 'Outfit_600SemiBold',
   color: Color.BLK,
 })
 
