@@ -37,7 +37,7 @@ const Type = styled.Text({
 })
 
 const FavoriteButton = styled.TouchableOpacity({
-  padding: 8,
+  padding: 6,
 })
 
 export const MerchantListItem = ({ merhcant, ...props }: ItemProps) => {
