@@ -9,7 +9,7 @@ import { merchantMock, placesMock } from '@/mocks'
 import { Button, Color, TabBarHeight } from '@/ui'
 import { opacity } from '@/utils'
 import { router } from 'expo-router'
-import { MapIcon, ScrollText } from 'lucide-react-native'
+import { List, MapIcon } from 'lucide-react-native'
 import { useMemo } from 'react'
 import {
   Animated,
@@ -112,7 +112,7 @@ export default function HomeTab() {
         <Button
           icon={
             layerPosition === positions.bottom ? (
-              <ScrollText color={Color.WYT} />
+              <List color={Color.WYT} />
             ) : (
               <MapIcon color={Color.WYT} />
             )

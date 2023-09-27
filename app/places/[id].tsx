@@ -1,36 +1,18 @@
+import { MerchantInfo } from '@/components'
 import { merchantMock } from '@/mocks'
 import { Button, Color } from '@/ui'
 import { opacity } from '@/utils'
 import { BlurView } from 'expo-blur'
-import { Heart, MapPin, Star } from 'lucide-react-native'
+import { ChevronLeft, Heart } from 'lucide-react-native'
 import { View, Dimensions, TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 
-const Header = styled.Text({
-  fontSize: 24,
-  fontFamily: 'Outfit_600SemiBold',
-})
-
-const MutedText = styled.Text({
-  fontFamily: 'Outfit_400Regular',
-  fontSize: 14,
-  color: Color.BLK,
-  opacity: 0.6,
-})
-
-const ListHeading = styled.Text({
-  fontFamily: 'Outfit_500Medium',
-  fontSize: 20,
-  color: Color.BLK,
-  marginBottom: 16,
-})
-
 export default function PlacesScreen() {
   const screenW = Dimensions.get('window').width
   const imageHeight = (screenW / 4) * 3
-  const { bottom } = useSafeAreaInsets()
+  const { bottom, top } = useSafeAreaInsets()
 
   const Image = styled.Image({
     height: imageHeight,
@@ -66,88 +48,65 @@ export default function PlacesScreen() {
             borderTopRightRadius: 24,
             borderTopLeftRadius: 24,
             marginTop: imageHeight - 24,
-            paddingHorizontal: 16,
-            paddingTop: 16,
+            paddingHorizontal: 24,
+            paddingTop: 24,
+            paddingBottom: 72 + bottom + 24,
           }}
         >
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Header>Analogue</Header>
-            <TouchableOpacity style={{ padding: 12 }}>
-              <Heart color={Color.BLK} />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginVertical: 16,
-            }}
-          >
-            <MutedText>
-              {merchant.type}, {merchant.rating}{' '}
-              <Star strokeWidth={2.5} size={14} color={Color.BLK} />
-            </MutedText>
-            <MutedText>
-              <MapPin strokeWidth={2.5} size={14} color={Color.BLK} />{' '}
-              {merchant.region}
-            </MutedText>
-            <MutedText>{merchant.distance} mi</MutedText>
-          </View>
-          <MutedText style={{ fontSize: 16, opacity: 1 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </MutedText>
-          <View
-            style={{
-              height: 0.5,
-              backgroundColor: opacity(Color.BLK, 0.2),
-              marginVertical: 24,
-            }}
-          />
-          <ListHeading>Happy Hour</ListHeading>
-          {Array.from(Array(7).keys()).map((key) => {
-            return (
-              <View
-                key={key}
-                style={{ flexDirection: 'row', marginVertical: 4 }}
-              >
-                <MutedText style={{ fontSize: 16, width: 120 }}>Mon</MutedText>
-                <MutedText
-                  style={{
-                    fontSize: 16,
-                    opacity: 1,
-                    fontFamily: 'Outfit_500Medium',
-                  }}
-                >
-                  4 PM - 7 PM
-                </MutedText>
-              </View>
-            )
-          })}
+          <MerchantInfo />
         </View>
       </ScrollView>
+      <View
+        style={{
+          position: 'absolute',
+          width: '100%',
+          top: top + 8,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          paddingHorizontal: 24,
+        }}
+      >
+        <TouchableOpacity>
+          <BlurView
+            style={{
+              padding: 6,
+              backgroundColor: opacity(Color.WYT, 0.8),
+              borderRadius: 1000,
+              overflow: 'hidden',
+            }}
+          >
+            <ChevronLeft strokeWidth={2.5} color={Color.BLK} />
+          </BlurView>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <BlurView
+            style={{
+              padding: 6,
+              backgroundColor: opacity(Color.WYT, 0.8),
+              borderRadius: 1000,
+              overflow: 'hidden',
+            }}
+          >
+            <Heart strokeWidth={2.5} color={Color.BLK} />
+          </BlurView>
+        </TouchableOpacity>
+      </View>
       <BlurView
         style={{
           position: 'absolute',
           bottom: 0,
-          height: 64 + bottom,
+          height: 72 + bottom,
           width: '100%',
           paddingBottom: bottom,
-          paddingHorizontal: 16,
+          paddingHorizontal: 24,
           justifyContent: 'flex-end',
           borderTopWidth: 0.5,
           borderTopColor: opacity(Color.BLK, 0.2),
         }}
       >
-        <Button radius={16}>Get Directions</Button>
+        <Button radius={1200} style={{ height: 56 }}>
+          Get Directions
+        </Button>
       </BlurView>
     </View>
   )
