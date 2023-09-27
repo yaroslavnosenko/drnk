@@ -1,7 +1,7 @@
 import { merchantMock } from '@/mocks'
-import { Color } from '@/ui'
+import { Color, Divider } from '@/ui'
 import { opacity } from '@/utils'
-import { Share, MapPin, Star, Heart, Phone, Globe } from 'lucide-react-native'
+import { Share, MapPin, Star, Phone, Globe } from 'lucide-react-native'
 import { TouchableOpacity, View } from 'react-native'
 import MapView from 'react-native-maps'
 import styled from 'styled-components/native'
@@ -37,12 +37,6 @@ const ListHeading = styled.Text({
   fontSize: 18,
   color: Color.BLK,
   marginBottom: 16,
-})
-
-const Divider = styled.View({
-  height: 0.5,
-  backgroundColor: opacity(Color.BLK, 0.2),
-  marginVertical: 32,
 })
 
 export const MerchantInfo = () => {

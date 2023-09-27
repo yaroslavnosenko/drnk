@@ -6,7 +6,7 @@ import {
 } from '@/components'
 import { useLayerLayout } from '@/hooks'
 import { merchantMock, placesMock } from '@/mocks'
-import { Button, Color, TabBarHeight } from '@/ui'
+import { Button, Color, Divider, TabBarHeight } from '@/ui'
 import { opacity } from '@/utils'
 import { router } from 'expo-router'
 import { List, MapIcon } from 'lucide-react-native'
@@ -20,15 +20,8 @@ import {
   ViewStyle,
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import styled from 'styled-components/native'
 
 const screenH = Dimensions.get('window').height
-
-const Separator = styled.View({
-  height: 0.5,
-  backgroundColor: opacity(Color.BLK, 0.2),
-  marginVertical: 24,
-})
 
 export default function HomeTab() {
   const { top, bottom } = useSafeAreaInsets()
@@ -89,10 +82,10 @@ export default function HomeTab() {
                   }),
                 }}
               />
-              <MerchantListHeader count={17} />
+              <MerchantListHeader title={'17 Results'} shouldShowTimeButton />
             </View>
           }
-          ItemSeparatorComponent={() => <Separator />}
+          ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <MerchantListItem
               merhcant={item}

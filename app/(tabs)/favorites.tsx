@@ -1,22 +1,43 @@
-import { Color, TabBarHeight } from '@/ui'
-import { View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { MerchantListHeader, MerchantListItem } from '@/components'
+import { merchantMock } from '@/mocks'
+import { Color, Divider, TabBarHeight } from '@/ui'
+import { opacity } from '@/utils'
+import { router } from 'expo-router'
+import { useMemo } from 'react'
+import { FlatList, StyleProp, View, ViewStyle } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 
-const Header = styled.Text({
-  fontSize: 32,
-  fontFamily: 'Outfit_500Medium',
-})
-
 export default function FavoritesTab() {
+  const { top, bottom } = useSafeAreaInsets()
+
+  const handlePress = (id: string) => {
+    router.push('/places/' + id)
+  }
+
+  const FlatListStyle: StyleProp<ViewStyle> = useMemo(
+    () => ({
+      paddingTop: top + 24,
+      paddingBottom: TabBarHeight + bottom + 24,
+      paddingHorizontal: 16,
+    }),
+    [bottom]
+  )
   return (
     <View style={{ flex: 1, backgroundColor: Color.WYT }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Header style={{ marginHorizontal: 16, marginVertical: 32 }}>
-          Favorites
-        </Header>
-        <View style={{ paddingBottom: TabBarHeight + 32 }} />
-      </ScrollView>
+      <FlatList
+        data={merchantMock}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={FlatListStyle}
+        ListHeaderComponent={<MerchantListHeader title="Favorites" />}
+        ItemSeparatorComponent={() => <Divider />}
+        renderItem={({ item }) => (
+          <MerchantListItem
+            merhcant={item}
+            onPress={() => handlePress(item.id)}
+          />
+        )}
+      />
     </View>
   )
 }
