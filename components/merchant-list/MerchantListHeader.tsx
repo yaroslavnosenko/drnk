@@ -1,11 +1,10 @@
-import { Button, Color } from '@/ui'
-import { opacity } from '@/utils'
-import { Clock } from 'lucide-react-native'
+import { Color } from '@/ui'
+import { ReactNode } from 'react'
 import styled from 'styled-components/native'
 
 interface Props {
   title: string
-  shouldShowTimeButton?: boolean
+  button?: ReactNode
 }
 
 const Container = styled.View({
@@ -22,23 +21,11 @@ const Heading = styled.Text({
   color: Color.BLK,
 })
 
-export const MerchantListHeader = ({ title, shouldShowTimeButton }: Props) => {
+export const MerchantListHeader = ({ title, button }: Props) => {
   return (
     <Container>
       <Heading>{title}</Heading>
-      {shouldShowTimeButton && (
-        <Button
-          border={opacity(Color.BLK, 0.2)}
-          icon={<Clock color={Color.BLK} />}
-          color={Color.BLK}
-          bg={Color.WYT}
-          radius={1000}
-          size="sm"
-          style={{ paddingLeft: 8 }}
-        >
-          Tue, 10PM
-        </Button>
-      )}
+      {button}
     </Container>
   )
 }

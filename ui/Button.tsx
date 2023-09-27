@@ -8,7 +8,7 @@ interface ButtonProps extends TouchableOpacityProps {
   color?: string
   border?: string
   radius?: number
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'xl'
   icon?: React.ReactNode
 }
 
@@ -16,6 +16,7 @@ interface ViewConfig {
   base: StyledObject
   sm: StyledObject
   md: StyledObject
+  xl: StyledObject
 }
 
 const containerStyles: ViewConfig = {
@@ -34,6 +35,11 @@ const containerStyles: ViewConfig = {
     paddingLeft: 16,
     paddingRight: 16,
   },
+  xl: {
+    height: 56,
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
 }
 
 const textStyles: ViewConfig = {
@@ -45,6 +51,9 @@ const textStyles: ViewConfig = {
     fontSize: 14,
   },
   md: {
+    fontSize: 16,
+  },
+  xl: {
     fontSize: 16,
   },
 }

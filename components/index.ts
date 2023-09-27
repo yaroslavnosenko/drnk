@@ -1,6 +1,7 @@
 export * from './auth'
 export * from './map'
 export * from './merchant-list'
+export * from './time-picker'
 export * from './Toolbar'
 export * from './TabBar'
 export * from './MerchantInfo'

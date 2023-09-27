@@ -2,6 +2,7 @@ import {
   Map,
   MerchantListHeader,
   MerchantListItem,
+  TimePickerModal,
   Toolbar,
 } from '@/components'
 import { useLayerLayout } from '@/hooks'
@@ -9,8 +10,8 @@ import { merchantMock, placesMock } from '@/mocks'
 import { Button, Color, Divider, TabBarHeight } from '@/ui'
 import { opacity } from '@/utils'
 import { router } from 'expo-router'
-import { List, MapIcon } from 'lucide-react-native'
-import { useMemo } from 'react'
+import { Clock, List, MapIcon } from 'lucide-react-native'
+import { useMemo, useState } from 'react'
 import {
   Animated,
   View,
@@ -49,6 +50,8 @@ export default function HomeTab() {
     layerPosition,
   } = useLayerLayout({ positions, panOffset: 160 })
 
+  const [isTimePickerVisible, setIsTimePickerVisible] = useState<boolean>(false)
+
   const handlePress = (id: string) => {
     router.push('/places/' + id)
   }
@@ -82,7 +85,23 @@ export default function HomeTab() {
                   }),
                 }}
               />
-              <MerchantListHeader title={'17 Results'} shouldShowTimeButton />
+              <MerchantListHeader
+                title={'17 Results'}
+                button={
+                  <Button
+                    border={opacity(Color.BLK, 0.2)}
+                    icon={<Clock color={Color.BLK} />}
+                    color={Color.BLK}
+                    bg={Color.WYT}
+                    radius={1000}
+                    size="sm"
+                    style={{ paddingLeft: 8 }}
+                    onPress={() => setIsTimePickerVisible(true)}
+                  >
+                    Tue, 10PM
+                  </Button>
+                }
+              />
             </View>
           }
           ItemSeparatorComponent={() => <Divider />}
@@ -122,6 +141,10 @@ export default function HomeTab() {
           {layerPosition === positions.bottom ? 'List' : 'Map'}
         </Button>
       </View>
+      <TimePickerModal
+        visible={isTimePickerVisible}
+        onClose={() => setIsTimePickerVisible(false)}
+      />
     </View>
   )
 }
