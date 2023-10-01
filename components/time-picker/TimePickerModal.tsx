@@ -3,6 +3,7 @@ import { opacity } from '@/utils'
 import { BlurView } from 'expo-blur'
 import { Modal, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { TimePicker } from '@/components'
 
 interface Props {
   onClose: () => void
@@ -32,6 +33,9 @@ export const TimePickerModal = ({ visible, onClose }: Props) => {
             paddingHorizontal: 24,
           }}
         >
+          <View style={{ marginBottom: 24 }}>
+            <TimePicker />
+          </View>
           <Button size="xl" onPress={onClose}>
             Save
           </Button>
